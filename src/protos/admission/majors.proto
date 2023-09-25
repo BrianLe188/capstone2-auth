@@ -1,0 +1,23 @@
+syntax = 'proto3';
+
+package majors;
+
+message Majors {
+  optional string id = 1;
+  string name = 2;
+  string educationalLevel = 3;
+  string industryCode = 4;
+  string specializedCode = 5;
+}
+
+message UpdateMajors {
+  string id = 1;
+  Majors body = 2;
+}
+
+message MajorsResponse {
+  oneof response {
+    Majors major = 1;
+    string error = 2;
+  }
+}

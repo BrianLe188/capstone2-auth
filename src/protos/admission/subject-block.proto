@@ -1,0 +1,20 @@
+syntax = 'proto3';
+
+package subject_block;
+
+message SubjectBlock {
+  optional string id = 1;
+  string name = 2;
+}
+
+message UpdateSubjectBlock {
+  string id = 1;
+  SubjectBlock body = 2;
+}
+
+message SubjectBlockResponse {
+  oneof response {
+    SubjectBlock block = 1;
+    string error = 2;
+  }
+}

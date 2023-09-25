@@ -1,0 +1,34 @@
+syntax = 'proto3';
+
+package module;
+
+message Module {
+  optional string id = 1;
+  string key = 2;
+  string name = 3;
+  string path = 4;
+  string icon = 5;
+}
+
+message Modules {
+  repeated Module data = 1;
+}
+
+message UpdateModule {
+  string id = 1;
+  Module body = 2;
+}
+
+message ModuleResponse {
+  oneof response {
+    Module module = 1;
+    string error = 2;
+  }
+}
+
+message ModulesResponse {
+  oneof response {
+    Modules modules = 1;
+    string error = 2;
+  }
+}

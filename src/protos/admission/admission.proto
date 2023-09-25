@@ -1,0 +1,54 @@
+syntax = 'proto3';
+
+package admission;
+
+import './module.proto';
+import './member-school.proto';
+import './majors.proto';
+import './subject.proto';
+import './subject-block.proto';
+
+service Admission {
+  rpc Default(GreetRequest) returns (GreetResponse) {}
+
+  rpc CreateModule(module.Module) returns (module.ModuleResponse) {}
+  rpc UpdateModule(module.UpdateModule) returns (module.ModuleResponse) {}
+  rpc DeleteModule(Target) returns (Message) {}
+  rpc GetAllModule(RequestEmpty) returns (module.ModulesResponse) {}
+
+  rpc CreateMemberSchool(member_school.MemberSchool) returns (member_school.MemberSchoolResponse) {}
+  rpc UpdateMemberSchool(member_school.UpdateMemberSchool) returns (member_school.MemberSchoolResponse) {}
+  rpc DeleteMemberSchool(Target) returns (Message) {}
+  rpc GetAllMemberSchool(RequestEmpty) returns (member_school.MemberSchoolsResponse) {}
+
+  rpc CreateMajor(majors.Majors) returns (majors.MajorsResponse) {}
+  rpc UpdateMajor(majors.UpdateMajors) returns (majors.MajorsResponse) {}
+  rpc DeleteMajor(Target) returns (Message) {}
+
+  rpc CreateSubject(subject.Subject) returns (subject.SubjectResponse) {}
+  rpc UpdateSubject(subject.UpdateSubject) returns (subject.SubjectResponse) {}
+  rpc DeleteSubject(Target) returns (Message) {}
+
+  rpc CreateSubjectBlock(subject_block.SubjectBlock) returns (subject_block.SubjectBlockResponse) {}
+  rpc UpdateSubjectBlock(subject_block.UpdateSubjectBlock) returns (subject_block.SubjectBlockResponse) {}
+  rpc DeleteSubjectBlock(Target) returns (Message) {}
+}
+
+message Target {
+  string id = 1;
+}
+
+message RequestEmpty {}
+
+message Message {
+  string message = 1;
+}
+
+message GreetRequest {
+  string name = 1;
+  string language_code = 2;
+}
+
+message GreetResponse {
+  string greeting = 1;
+}

@@ -14,6 +14,7 @@ export interface ProtoGrpcType {
     GreetRequest: MessageTypeDefinition
     GreetResponse: MessageTypeDefinition
     Message: MessageTypeDefinition
+    RequestEmpty: MessageTypeDefinition
     Target: MessageTypeDefinition
     UserRole: MessageTypeDefinition
   }
@@ -32,6 +33,8 @@ export interface ProtoGrpcType {
     UpdateUser: MessageTypeDefinition
     User: MessageTypeDefinition
     UserResponse: MessageTypeDefinition
+    Users: MessageTypeDefinition
+    UsersResponse: MessageTypeDefinition
   }
 }
 

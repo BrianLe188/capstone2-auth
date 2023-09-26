@@ -9,6 +9,18 @@ const userRepo = AuthDB.getRepository(User);
 const tokenRepo = AuthDB.getRepository(Token);
 const roleRepo = AuthDB.getRepository(Role);
 
+const GetAllUser = async (call: any, callback: any) => {
+  try {
+    const users = await userRepo.find({
+      relations: ["role"],
+    });
+    console.log(users);
+    callback(null, { users: { data: users || [] } });
+  } catch (error) {
+    callback(null, { error });
+  }
+};
+
 const Login = async (call: any, callback: any) => {
   try {
     const { email, password } = call.request;
@@ -85,7 +97,7 @@ const CreateUser = async (call: any, callback: any) => {
     }
     const targetRole = await roleRepo.findOne({
       where: {
-        name,
+        name: name || "user",
       },
     });
     const salt = await bcrypt.genSalt(10);
@@ -99,7 +111,7 @@ const CreateUser = async (call: any, callback: any) => {
     }
     await tokenRepo.save(token);
     await userRepo.save(newUser);
-    callback(null, { user: newUser });
+    callback(null, { user: newUser, role: targetRole });
   } catch (error) {
     callback(null, { error });
   }
@@ -145,6 +157,7 @@ const userRPC = {
   DeleteUser,
   IsExistUser,
   Login,
+  GetAllUser,
 };
 
 export default userRPC;

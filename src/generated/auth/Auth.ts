@@ -8,6 +8,7 @@ import type { GreetRequest as _auth_GreetRequest, GreetRequest__Output as _auth_
 import type { GreetResponse as _auth_GreetResponse, GreetResponse__Output as _auth_GreetResponse__Output } from '../auth/GreetResponse';
 import type { Login as _user_Login, Login__Output as _user_Login__Output } from '../user/Login';
 import type { Message as _auth_Message, Message__Output as _auth_Message__Output } from '../auth/Message';
+import type { RequestEmpty as _auth_RequestEmpty, RequestEmpty__Output as _auth_RequestEmpty__Output } from '../auth/RequestEmpty';
 import type { Role as _role_Role, Role__Output as _role_Role__Output } from '../role/Role';
 import type { RoleResponse as _role_RoleResponse, RoleResponse__Output as _role_RoleResponse__Output } from '../role/RoleResponse';
 import type { Target as _auth_Target, Target__Output as _auth_Target__Output } from '../auth/Target';
@@ -16,6 +17,7 @@ import type { UpdateRole as _role_UpdateRole, UpdateRole__Output as _role_Update
 import type { UpdateUser as _user_UpdateUser, UpdateUser__Output as _user_UpdateUser__Output } from '../user/UpdateUser';
 import type { UserResponse as _user_UserResponse, UserResponse__Output as _user_UserResponse__Output } from '../user/UserResponse';
 import type { UserRole as _auth_UserRole, UserRole__Output as _auth_UserRole__Output } from '../auth/UserRole';
+import type { UsersResponse as _user_UsersResponse, UsersResponse__Output as _user_UsersResponse__Output } from '../user/UsersResponse';
 
 export interface AuthClient extends grpc.Client {
   CreateRole(argument: _role_Role, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_role_RoleResponse__Output>): grpc.ClientUnaryCall;
@@ -62,6 +64,15 @@ export interface AuthClient extends grpc.Client {
   deleteUser(argument: _auth_Target, metadata: grpc.Metadata, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
   deleteUser(argument: _auth_Target, options: grpc.CallOptions, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
   deleteUser(argument: _auth_Target, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  
+  GetAllUser(argument: _auth_RequestEmpty, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  GetAllUser(argument: _auth_RequestEmpty, metadata: grpc.Metadata, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  GetAllUser(argument: _auth_RequestEmpty, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  GetAllUser(argument: _auth_RequestEmpty, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  getAllUser(argument: _auth_RequestEmpty, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  getAllUser(argument: _auth_RequestEmpty, metadata: grpc.Metadata, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  getAllUser(argument: _auth_RequestEmpty, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  getAllUser(argument: _auth_RequestEmpty, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
   
   IsExistUser(argument: _user_Email, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_auth_Exist__Output>): grpc.ClientUnaryCall;
   IsExistUser(argument: _user_Email, metadata: grpc.Metadata, callback: grpc.requestCallback<_auth_Exist__Output>): grpc.ClientUnaryCall;
@@ -112,6 +123,8 @@ export interface AuthHandlers extends grpc.UntypedServiceImplementation {
   
   DeleteUser: grpc.handleUnaryCall<_auth_Target__Output, _auth_Message>;
   
+  GetAllUser: grpc.handleUnaryCall<_auth_RequestEmpty__Output, _user_UsersResponse>;
+  
   IsExistUser: grpc.handleUnaryCall<_user_Email__Output, _auth_Exist>;
   
   Login: grpc.handleUnaryCall<_user_Login__Output, _token_TokenResponse>;
@@ -128,6 +141,7 @@ export interface AuthDefinition extends grpc.ServiceDefinition {
   Default: MethodDefinition<_auth_GreetRequest, _auth_GreetResponse, _auth_GreetRequest__Output, _auth_GreetResponse__Output>
   DeleteRole: MethodDefinition<_auth_Target, _auth_Message, _auth_Target__Output, _auth_Message__Output>
   DeleteUser: MethodDefinition<_auth_Target, _auth_Message, _auth_Target__Output, _auth_Message__Output>
+  GetAllUser: MethodDefinition<_auth_RequestEmpty, _user_UsersResponse, _auth_RequestEmpty__Output, _user_UsersResponse__Output>
   IsExistUser: MethodDefinition<_user_Email, _auth_Exist, _user_Email__Output, _auth_Exist__Output>
   Login: MethodDefinition<_user_Login, _token_TokenResponse, _user_Login__Output, _token_TokenResponse__Output>
   UpdateRole: MethodDefinition<_role_UpdateRole, _role_RoleResponse, _role_UpdateRole__Output, _role_RoleResponse__Output>

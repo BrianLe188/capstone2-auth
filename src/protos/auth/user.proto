@@ -2,11 +2,18 @@ syntax = 'proto3';
 
 package user;
 
+import './role.proto';
+
 message User {
   optional string id = 1;
   string email = 2;
   string password = 3;
   string full_name = 4;
+  optional role.Role role = 5;
+}
+
+message Users {
+  repeated User data = 1;
 }
 
 message Login {
@@ -26,6 +33,13 @@ message UpdateUser {
 message UserResponse {
   oneof response {
     User user = 1;
+    string error = 2;
+  }
+}
+
+message UsersResponse {
+  oneof response {
+    Users users = 1;
     string error = 2;
   }
 }

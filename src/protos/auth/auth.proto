@@ -14,6 +14,7 @@ service Auth {
   rpc DeleteUser(Target) returns (Message) {}
   rpc IsExistUser(user.Email) returns (Exist) {}
   rpc Login(user.Login) returns (token.TokenResponse) {}
+  rpc GetAllUser(RequestEmpty) returns (user.UsersResponse) {}
 
   rpc CreateRole(role.Role) returns (role.RoleResponse) {}
   rpc UpdateRole(role.UpdateRole) returns (role.RoleResponse) {}
@@ -24,6 +25,8 @@ message UserRole {
   user.User user = 1;
   role.Role role = 2;
 }
+
+message RequestEmpty {}
 
 message Exist {
   bool exist = 1;

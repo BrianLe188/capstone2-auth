@@ -10,7 +10,7 @@ import { User } from "../users/users.entity";
 @Entity({ name: "tokens" })
 export class Token {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
   @Column({ type: "text", nullable: true })
   accessToken: string;

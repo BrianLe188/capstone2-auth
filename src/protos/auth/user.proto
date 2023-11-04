@@ -3,6 +3,7 @@ syntax = 'proto3';
 package user;
 
 import './role.proto';
+import './token.proto';
 
 message User {
   optional string id = 1;
@@ -10,6 +11,20 @@ message User {
   string password = 3;
   string full_name = 4;
   optional role.Role role = 5;
+  optional string socket = 6;
+  optional string ip = 7;
+  optional token.Token token = 8;
+}
+
+message UserOptions {
+  optional string id = 1;
+  optional string email = 2;
+  optional string password = 3;
+  optional string full_name = 4;
+  optional role.Role role = 5;
+  optional string socket = 6;
+  optional string ip = 7;
+  optional token.Token token = 8;
 }
 
 message Users {

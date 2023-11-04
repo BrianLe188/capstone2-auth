@@ -11,6 +11,7 @@ import { ProtoGrpcType } from "./generated/auth";
 import { AuthDB } from "./data-source";
 import userRPC from "./services/users/users.rpc";
 import roleRPC from "./services/roles/roles.rpc";
+import tokenRPC from "./services/tokens/tokens.rpc";
 
 const packageDefinition = loadSync(PROTO_PATH);
 
@@ -23,6 +24,7 @@ function main() {
   server.addService(service.auth.Auth.service, {
     ...userRPC,
     ...roleRPC,
+    ...tokenRPC,
   });
   if (process.env.AUTH_GRPC) {
     server.bindAsync(

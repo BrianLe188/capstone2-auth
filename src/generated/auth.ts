@@ -16,6 +16,8 @@ export interface ProtoGrpcType {
     Message: MessageTypeDefinition
     RequestEmpty: MessageTypeDefinition
     Target: MessageTypeDefinition
+    Token: MessageTypeDefinition
+    UserFromToken: MessageTypeDefinition
     UserRole: MessageTypeDefinition
   }
   role: {
@@ -32,6 +34,7 @@ export interface ProtoGrpcType {
     Login: MessageTypeDefinition
     UpdateUser: MessageTypeDefinition
     User: MessageTypeDefinition
+    UserOptions: MessageTypeDefinition
     UserResponse: MessageTypeDefinition
     Users: MessageTypeDefinition
     UsersResponse: MessageTypeDefinition

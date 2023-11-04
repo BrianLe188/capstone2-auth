@@ -4,6 +4,7 @@ import { Role } from "../roles/roles.entity";
 import { Token } from "../tokens/tokens.entity";
 import { User } from "./users.entity";
 import bcrypt from "bcrypt";
+import { v4 } from "uuid";
 
 const userRepo = AuthDB.getRepository(User);
 const tokenRepo = AuthDB.getRepository(Token);
@@ -11,10 +12,13 @@ const roleRepo = AuthDB.getRepository(Role);
 
 const GetAllUser = async (call: any, callback: any) => {
   try {
+    const options = call.request;
     const users = await userRepo.find({
+      where: {
+        ...options,
+      },
       relations: ["role"],
     });
-    console.log(users);
     callback(null, { users: { data: users || [] } });
   } catch (error) {
     callback(null, { error });
@@ -41,8 +45,8 @@ const Login = async (call: any, callback: any) => {
       return callback(null, { error: "Email or password is incorrect" });
     }
     const token = sign({
+      id: user.id,
       email,
-      password,
     });
     const userToken: any = await tokenRepo.findOne({
       where: {
@@ -83,7 +87,7 @@ const IsExistUser = async (call: any, callback: any) => {
 const CreateUser = async (call: any, callback: any) => {
   try {
     const newUser = new User();
-    const token = new Token();
+    const token: any = new Token();
     const { user, role } = call.request;
     const { email, password, fullName } = user;
     const { name } = role;
@@ -102,16 +106,26 @@ const CreateUser = async (call: any, callback: any) => {
     });
     const salt = await bcrypt.genSalt(10);
     const _password = await bcrypt.hash(password, salt);
+    newUser.id = v4();
     newUser.email = email;
     newUser.password = _password;
     newUser.fullName = fullName;
+    const _token = sign({
+      id: newUser.id,
+      email,
+    });
+    Object.keys(_token).forEach((item) => {
+      token[item] = _token[item as keyof typeof _token];
+    });
     newUser.token = token;
     if (targetRole) {
       newUser.role = targetRole;
     }
     await tokenRepo.save(token);
     await userRepo.save(newUser);
-    callback(null, { user: newUser, role: targetRole });
+    callback(null, {
+      user: newUser,
+    });
   } catch (error) {
     callback(null, { error });
   }

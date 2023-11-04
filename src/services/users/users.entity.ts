@@ -27,4 +27,10 @@ export class User {
 
   @ManyToOne(() => Role, (role) => role.users)
   role: Role;
+
+  @Column({ nullable: true })
+  socket: string;
+
+  @Column({ nullable: true })
+  ip: string;
 }

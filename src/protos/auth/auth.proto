@@ -14,11 +14,21 @@ service Auth {
   rpc DeleteUser(Target) returns (Message) {}
   rpc IsExistUser(user.Email) returns (Exist) {}
   rpc Login(user.Login) returns (token.TokenResponse) {}
-  rpc GetAllUser(RequestEmpty) returns (user.UsersResponse) {}
+  rpc GetAllUser(user.UserOptions) returns (user.UsersResponse) {}
 
   rpc CreateRole(role.Role) returns (role.RoleResponse) {}
   rpc UpdateRole(role.UpdateRole) returns (role.RoleResponse) {}
   rpc DeleteRole(Target) returns (Message) {}
+
+  rpc VerifyToken(Token) returns (UserFromToken) {}
+}
+
+message Token {
+  string token = 1;
+}
+
+message UserFromToken {
+  user.User data = 1;
 }
 
 message UserRole {

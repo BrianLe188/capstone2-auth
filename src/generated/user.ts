@@ -12,11 +12,16 @@ export interface ProtoGrpcType {
     RoleResponse: MessageTypeDefinition
     UpdateRole: MessageTypeDefinition
   }
+  token: {
+    Token: MessageTypeDefinition
+    TokenResponse: MessageTypeDefinition
+  }
   user: {
     Email: MessageTypeDefinition
     Login: MessageTypeDefinition
     UpdateUser: MessageTypeDefinition
     User: MessageTypeDefinition
+    UserOptions: MessageTypeDefinition
     UserResponse: MessageTypeDefinition
     Users: MessageTypeDefinition
     UsersResponse: MessageTypeDefinition

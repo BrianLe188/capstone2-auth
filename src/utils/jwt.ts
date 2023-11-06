@@ -17,10 +17,10 @@ export const sign = (payload: Record<string, any>) => {
   try {
     if (process.env.SECRET_JWT) {
       const accessToken = jwt.sign(payload, process.env.SECRET_JWT, {
-        expiresIn: 60 * 5,
+        // expiresIn: 60 * 5,
       });
       const refreshToken = jwt.sign(payload, process.env.SECRET_JWT, {
-        expiresIn: 60 * 60,
+        // expiresIn: 60 * 60,
       });
       console.log(accessToken, refreshToken);
       return {

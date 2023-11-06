@@ -165,6 +165,20 @@ const DeleteUser = async (call: any, callback: any) => {
   }
 };
 
+const GetUserById = async (call: any, callback: any) => {
+  try {
+    const { id } = call.request;
+    const user = await userRepo.findOne({
+      where: {
+        id,
+      },
+    });
+    callback(null, { user });
+  } catch (error) {
+    callback(null, { error });
+  }
+};
+
 const userRPC = {
   CreateUser,
   UpdateUser,
@@ -172,6 +186,7 @@ const userRPC = {
   IsExistUser,
   Login,
   GetAllUser,
+  GetUserById,
 };
 
 export default userRPC;

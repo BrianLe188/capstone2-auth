@@ -89,7 +89,7 @@ const CreateUser = async (call: any, callback: any) => {
     const newUser = new User();
     const token: any = new Token();
     const { user, role } = call.request;
-    const { email, password, fullName } = user;
+    const { email, password, fullName, socket } = user;
     const { name } = role;
     const existing = await userRepo.findOne({
       where: {
@@ -113,6 +113,7 @@ const CreateUser = async (call: any, callback: any) => {
     const _token = sign({
       id: newUser.id,
       email,
+      socket,
     });
     Object.keys(_token).forEach((item) => {
       token[item] = _token[item as keyof typeof _token];
@@ -134,12 +135,26 @@ const CreateUser = async (call: any, callback: any) => {
 const UpdateUser = async (call: any, callback: any) => {
   try {
     const { id, body } = call.request;
-    const updatedUser: any = await userRepo.findOneBy({
-      id,
+    const updatedUser: any = await userRepo.findOne({
+      where: {
+        id,
+      },
+      relations: {
+        token: true,
+      },
     });
     if (updatedUser) {
+      console.log(updatedUser);
       Object.keys(body).forEach((item) => {
         updatedUser[item] = body[item];
+      });
+      const _token = sign({
+        id: updatedUser.id,
+        email: updatedUser.email,
+        socket: updatedUser.socket,
+      });
+      Object.keys(_token).forEach((item) => {
+        updatedUser.token[item] = _token[item as keyof typeof _token];
       });
       await userRepo.save(updatedUser);
       callback(null, { user: updatedUser });

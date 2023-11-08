@@ -85,6 +85,15 @@ export interface AuthClient extends grpc.Client {
   getUserById(argument: _user_UserOptions, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
   getUserById(argument: _user_UserOptions, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
   
+  GiveScore(argument: _user_UserOptions, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  GiveScore(argument: _user_UserOptions, metadata: grpc.Metadata, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  GiveScore(argument: _user_UserOptions, options: grpc.CallOptions, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  GiveScore(argument: _user_UserOptions, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  giveScore(argument: _user_UserOptions, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  giveScore(argument: _user_UserOptions, metadata: grpc.Metadata, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  giveScore(argument: _user_UserOptions, options: grpc.CallOptions, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  giveScore(argument: _user_UserOptions, callback: grpc.requestCallback<_auth_Message__Output>): grpc.ClientUnaryCall;
+  
   IsExistUser(argument: _user_Email, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_auth_Exist__Output>): grpc.ClientUnaryCall;
   IsExistUser(argument: _user_Email, metadata: grpc.Metadata, callback: grpc.requestCallback<_auth_Exist__Output>): grpc.ClientUnaryCall;
   IsExistUser(argument: _user_Email, options: grpc.CallOptions, callback: grpc.requestCallback<_auth_Exist__Output>): grpc.ClientUnaryCall;
@@ -147,6 +156,8 @@ export interface AuthHandlers extends grpc.UntypedServiceImplementation {
   
   GetUserById: grpc.handleUnaryCall<_user_UserOptions__Output, _user_UserResponse>;
   
+  GiveScore: grpc.handleUnaryCall<_user_UserOptions__Output, _auth_Message>;
+  
   IsExistUser: grpc.handleUnaryCall<_user_Email__Output, _auth_Exist>;
   
   Login: grpc.handleUnaryCall<_user_Login__Output, _token_TokenResponse>;
@@ -167,6 +178,7 @@ export interface AuthDefinition extends grpc.ServiceDefinition {
   DeleteUser: MethodDefinition<_auth_Target, _auth_Message, _auth_Target__Output, _auth_Message__Output>
   GetAllUser: MethodDefinition<_user_UserOptions, _user_UsersResponse, _user_UserOptions__Output, _user_UsersResponse__Output>
   GetUserById: MethodDefinition<_user_UserOptions, _user_UserResponse, _user_UserOptions__Output, _user_UserResponse__Output>
+  GiveScore: MethodDefinition<_user_UserOptions, _auth_Message, _user_UserOptions__Output, _auth_Message__Output>
   IsExistUser: MethodDefinition<_user_Email, _auth_Exist, _user_Email__Output, _auth_Exist__Output>
   Login: MethodDefinition<_user_Login, _token_TokenResponse, _user_Login__Output, _token_TokenResponse__Output>
   UpdateRole: MethodDefinition<_role_UpdateRole, _role_RoleResponse, _role_UpdateRole__Output, _role_RoleResponse__Output>

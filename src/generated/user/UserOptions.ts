@@ -12,6 +12,8 @@ export interface UserOptions {
   'socket'?: (string);
   'ip'?: (string);
   'token'?: (_token_Token | null);
+  'score'?: (number | string);
+  'ratingTime'?: (number);
   '_id'?: "id";
   '_email'?: "email";
   '_password'?: "password";
@@ -20,6 +22,8 @@ export interface UserOptions {
   '_socket'?: "socket";
   '_ip'?: "ip";
   '_token'?: "token";
+  '_score'?: "score";
+  '_ratingTime'?: "ratingTime";
 }
 
 export interface UserOptions__Output {
@@ -31,6 +35,8 @@ export interface UserOptions__Output {
   'socket'?: (string);
   'ip'?: (string);
   'token'?: (_token_Token__Output | null);
+  'score'?: (number);
+  'ratingTime'?: (number);
   '_id': "id";
   '_email': "email";
   '_password': "password";
@@ -39,4 +45,6 @@ export interface UserOptions__Output {
   '_socket': "socket";
   '_ip': "ip";
   '_token': "token";
+  '_score': "score";
+  '_ratingTime': "ratingTime";
 }

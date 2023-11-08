@@ -12,11 +12,15 @@ export interface User {
   'socket'?: (string);
   'ip'?: (string);
   'token'?: (_token_Token | null);
+  'score'?: (number | string);
+  'ratingTime'?: (number);
   '_id'?: "id";
   '_role'?: "role";
   '_socket'?: "socket";
   '_ip'?: "ip";
   '_token'?: "token";
+  '_score'?: "score";
+  '_ratingTime'?: "ratingTime";
 }
 
 export interface User__Output {
@@ -28,9 +32,13 @@ export interface User__Output {
   'socket'?: (string);
   'ip'?: (string);
   'token'?: (_token_Token__Output | null);
+  'score'?: (number);
+  'ratingTime'?: (number);
   '_id': "id";
   '_role': "role";
   '_socket': "socket";
   '_ip': "ip";
   '_token': "token";
+  '_score': "score";
+  '_ratingTime': "ratingTime";
 }

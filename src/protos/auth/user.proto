@@ -14,6 +14,8 @@ message User {
   optional string socket = 6;
   optional string ip = 7;
   optional token.Token token = 8;
+  optional double score = 9;
+  optional int32 ratingTime = 10;
 }
 
 message UserOptions {
@@ -25,6 +27,8 @@ message UserOptions {
   optional string socket = 6;
   optional string ip = 7;
   optional token.Token token = 8;
+  optional double score = 9;
+  optional int32 ratingTime = 10;
 }
 
 message Users {

@@ -16,6 +16,7 @@ service Auth {
   rpc Login(user.Login) returns (token.TokenResponse) {}
   rpc GetAllUser(user.UserOptions) returns (user.UsersResponse) {}
   rpc GetUserById(user.UserOptions) returns (user.UserResponse) {}
+  rpc GiveScore(user.UserOptions) returns (Message) {}
 
   rpc CreateRole(role.Role) returns (role.RoleResponse) {}
   rpc UpdateRole(role.UpdateRole) returns (role.RoleResponse) {}

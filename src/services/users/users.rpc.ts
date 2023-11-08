@@ -194,6 +194,24 @@ const GetUserById = async (call: any, callback: any) => {
   }
 };
 
+const GiveScore = async (call: any, callback: any) => {
+  try {
+    const { score, id } = call.request;
+    const user = await userRepo.findOne({
+      where: { id },
+    });
+    if (user) {
+      const currentTime = user.ratingTime;
+      user.ratingTime = currentTime + 1;
+      user.score = (user.score + score) / user.ratingTime;
+      await userRepo.save(user);
+    }
+    callback(null, { message: "give score" });
+  } catch (error) {
+    callback(null, { error });
+  }
+};
+
 const userRPC = {
   CreateUser,
   UpdateUser,
@@ -202,6 +220,7 @@ const userRPC = {
   Login,
   GetAllUser,
   GetUserById,
+  GiveScore,
 };
 
 export default userRPC;

@@ -34,7 +34,7 @@ export class User {
   @Column({ nullable: true })
   ip: string;
 
-  @Column({ default: 0 })
+  @Column({ default: 0, type: "float" })
   score: number;
 
   @Column({ default: 0 })

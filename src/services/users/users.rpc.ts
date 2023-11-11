@@ -35,6 +35,9 @@ const Login = async (call: any, callback: any) => {
       where: {
         email,
       },
+      relations: {
+        role: true,
+      },
     });
     if (!user) {
       return callback(null, { error: "Not found" });
@@ -47,6 +50,7 @@ const Login = async (call: any, callback: any) => {
     const token = sign({
       id: user.id,
       email,
+      role: user.role,
     });
     const userToken: any = await tokenRepo.findOne({
       where: {
@@ -110,18 +114,19 @@ const CreateUser = async (call: any, callback: any) => {
     newUser.email = email;
     newUser.password = _password;
     newUser.fullName = fullName;
+    if (targetRole) {
+      newUser.role = targetRole;
+    }
     const _token = sign({
       id: newUser.id,
       email,
       socket,
+      role: user.role,
     });
     Object.keys(_token).forEach((item) => {
       token[item] = _token[item as keyof typeof _token];
     });
     newUser.token = token;
-    if (targetRole) {
-      newUser.role = targetRole;
-    }
     await tokenRepo.save(token);
     await userRepo.save(newUser);
     callback(null, {
